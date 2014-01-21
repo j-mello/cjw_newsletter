@@ -31,7 +31,6 @@
                                                                  'class_filter_array', array('cjw_newsletter_list'),
                                                                  'limitation', hash() )
                                                        )}
-
     <h1>{'Newsletter subscribe'|i18n( 'cjw_newsletter/subscribe' )}</h1>
 
 

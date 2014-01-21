@@ -409,7 +409,7 @@
     </div>{* =============  list of all send items ============ *}
 
     <div class="context-block">
-        {def $edition_send_item_array = fetch( 'newsletter', 'edition_send_item_list', hash('newsletter_user_id', $newsletter_user.id ) )
+        {def $edition_send_item_array = fetch( 'newsletter', 'edition_send_item_list', hash('newsletter_user_id', $newsletter_user.id) )
              $edition_send_item_count = fetch( 'newsletter', 'edition_send_item_list_count', hash('newsletter_user_id', $newsletter_user.id ) )}
         {* DESIGN: Header START *}
         <div class="box-header">

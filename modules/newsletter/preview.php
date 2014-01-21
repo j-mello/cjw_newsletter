@@ -173,7 +173,7 @@ if( $debug === true )
 else
 {
     header( "Content-type: text/html; charset=utf-8" );
-    echo $newsletterContent;
+    echo $newsletterContent;    
     eZExecution::cleanExit();
 }
 

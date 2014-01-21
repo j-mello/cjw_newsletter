@@ -22,6 +22,7 @@ CSSFileList[]=cjw_newsletter.css
 FrontendCSSFileList[]=cjw_newsletter.css
 
 # Same as above for backend (admin2) designs
+
 BackendCSSFileList[]=cjw_newsletter.css
 
 

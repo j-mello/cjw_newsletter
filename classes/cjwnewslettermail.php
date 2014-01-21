@@ -78,6 +78,7 @@ class CjwNewsletterMail
         $dataMap = $objectVersion->attribute('data_map');
         $editionAttribute = $dataMap['newsletter_edition'];
         $editionAttributeContent = $editionAttribute->attribute('content');
+        eZLog::write( "Edition attributes (" . time() . ")\n" . var_export( $editionAttributeContent->attribute('list_attribute_content'), 1 ), 'debug_cjw_newsletter.log' );
         $listAttributeContent = $editionAttributeContent->attribute('list_attribute_content');
         $outputFormatArray = $listAttributeContent->attribute('output_format_array');
         $mainSiteAccess = $listAttributeContent->attribute('main_siteaccess');
@@ -95,6 +96,7 @@ class CjwNewsletterMail
 
             $outputFormatTextArray[ $outputName ] = $newsletterContentArray;
         }
+        eZLog::write( "Output Formati: \n" . var_export( $outputFormatTextArray, 1 ), 'debug_cjw_newsletter.log' );
         return $outputFormatTextArray;
     }
 
