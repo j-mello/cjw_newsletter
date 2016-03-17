@@ -57,7 +57,7 @@ else
 $Result['node_id'] = $nodeId;
 $Result['content'] = $tpl->fetch( $templateFile );
 $Result['path'] =  array( array( 'url'  => 'newsletter/index',
-                                 'text' => ezpI18n::tr(( 'cjw_newsletter/path', 'Newsletter' ) ),
+                                 'text' => ezi18n( 'cjw_newsletter/path', 'Newsletter' ) ),
 
                           array( 'url'  => $systemNode->attribute( 'url_alias' ),
                                  'text' => $systemNode->attribute( 'name' ) ),
@@ -66,7 +66,7 @@ $Result['path'] =  array( array( 'url'  => 'newsletter/index',
                                  'text' => $node->attribute( 'name' ) ),
 
                           array( 'url'  => false,
-                                 'text' => ezpI18n::tr(( 'cjw_newsletter/subscription_list', 'Subscriptions' ) ) );
+                                 'text' => ezi18n( 'cjw_newsletter/subscription_list', 'Subscriptions' ) ) );
 
 
 ?>

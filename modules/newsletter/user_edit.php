@@ -92,10 +92,10 @@ if( $http->hasVariable( 'UserCreateMsg' ) )
     switch ( $userCreateMsg )
     {
         case 'edit_new':
-            $messageFeedback = ezpI18n::tr(( 'cjw_newsletter/user_edit', 'Creating new newsletter user' );
+            $messageFeedback = ezi18n( 'cjw_newsletter/user_edit', 'Creating new newsletter user' );
             break;
         case 'edit_existing':
-            $messageFeedback =  ezpI18n::tr(( 'cjw_newsletter/user_edit', 'Edit existing newsletter user' );
+            $messageFeedback =  ezi18n( 'cjw_newsletter/user_edit', 'Edit existing newsletter user' );
             break;
     }
 }
@@ -193,7 +193,7 @@ switch( $newsletterUserObject->attribute('status') )
 {
     case CjwNewsletterUser::STATUS_BLACKLISTED :
         $userIsBlacklisted = true;
-        $messageFeedback = ezpI18n::tr(( 'cjw_newsletter/user_edit', 'Can not edit newsletter user because he is blacklisted' );
+        $messageFeedback = ezi18n( 'cjw_newsletter/user_edit', 'Can not edit newsletter user because he is blacklisted' );
        // return $module->handleError( eZError::KERNEL_NOT_AVAILABLE, 'kernel' );
     break;
 }
@@ -203,8 +203,8 @@ if ( $userIsBlacklisted === false
      && ( $module->isCurrentAction( 'Store' )
           || $module->isCurrentAction( 'StoreDraft' ) ) )
 {
-    $messageArray['email']      = array( 'field_key'   => ezpI18n::tr(( 'cjw_newsletter/subscription', 'Email'),
-                                          'message'     => ezpI18n::tr(( 'cjw_newsletter/subscription', 'You must provide a valid email address.' ) );
+    $messageArray['email']      = array( 'field_key'   => ezi18n( 'cjw_newsletter/subscription', 'Email'),
+                                          'message'     => ezi18n( 'cjw_newsletter/subscription', 'You must provide a valid email address.' ) );
 
     $requiredSubscriptionFields = array( 'email' );
     foreach ( $requiredSubscriptionFields as $fieldName )
@@ -225,8 +225,8 @@ if ( $userIsBlacklisted === false
                     if( is_object( $existingNewsletterUserObject )
                         && (int) $existingNewsletterUserObject->attribute('id') != (int) $newsletterUserObject->attribute('id') )
                     {
-                        $warningArr['email'] = array( 'field_key'   => ezpI18n::tr(( 'cjw_newsletter/subscription', 'Email' ),
-                                                'message'     => ezpI18n::tr(( 'cjw_newsletter/subscription', 'Email is already used by an other newsletter user.' ) );
+                        $warningArr['email'] = array( 'field_key'   => ezi18n( 'cjw_newsletter/subscription', 'Email' ),
+                                                'message'     => ezi18n( 'cjw_newsletter/subscription', 'Email is already used by an other newsletter user.' ) );
                     }
                 }
 
@@ -365,9 +365,9 @@ $Result = array();
 //$Result[ 'ui_context' ] = 'edit';
 $Result['content'] = $tpl->fetch( $templateFile );
 $Result['path'] =  array( array( 'url'  => false,
-                                 'text' => ezpI18n::tr(( 'cjw_newsletter/path', 'Newsletter' ) ),
+                                 'text' => ezi18n( 'cjw_newsletter/path', 'Newsletter' ) ),
                           array( 'url'  => false,
-                                 'text' => ezpI18n::tr(( 'cjw_newsletter/user_list', 'Users' ) ),
+                                 'text' => ezi18n( 'cjw_newsletter/user_list', 'Users' ) ),
                           array( 'url'  => false,
                                  'text' => $newsletterUserObject->attribute( 'name' ) )  );
 
