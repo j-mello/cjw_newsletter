@@ -359,7 +359,8 @@ class CjwNewsletterList extends eZPersistentObject
     function getAvailableSiteaccessList()
     {
         $ini = eZINI::instance( 'site.ini' );
-        $availableSiteAccessListArray = $ini->variable('SiteAccessSettings', 'AvailableSiteAccessList' );
+        //@luca @patch $availableSiteAccessListArray = $ini->variable('SiteAccessSettings', 'AvailableSiteAccessList' );
+        $availableSiteAccessListArray = $ini->variable('SiteAccessSettings', 'RelatedSiteAccessList' );        
         $availableSiteAccessListInfoArray = array();
 
         foreach ( $availableSiteAccessListArray as $siteAccessName )
