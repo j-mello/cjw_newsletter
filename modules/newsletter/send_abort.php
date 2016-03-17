@@ -29,7 +29,7 @@ else
     $editionSendId = null;
 }
 
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 $editionSendObject = CjwNewsletterEditionSend::fetch( $editionSendId );
 
 if ( !is_object( $editionSendObject ) )

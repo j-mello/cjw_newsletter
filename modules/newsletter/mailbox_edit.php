@@ -70,7 +70,7 @@ if ( isset( $Params[ 'MailboxId' ] ) )
     }
 }
 
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 
 $viewParameters = array( 'offset'     => 0,
                          'namefilter' => '' );

@@ -140,7 +140,7 @@ $viewParameters = array(
 $userParameters = $Params['UserParameters'];
 $viewParameters = array_merge( $viewParameters, $userParameters );
 
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 $tpl->setVariable( 'view_parameters', $viewParameters );
 $tpl->setVariable( 'list_node', $listNode );
 $tpl->setVariable( 'csv_delimiter', $delimiter );

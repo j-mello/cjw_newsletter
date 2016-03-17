@@ -30,7 +30,7 @@ if ( is_object( $mailboxObject ) )
     $listMailboxesCount = count( $listMailboxes );
 }
 
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 
 $viewParameters = array( 'offset' => 0,
                          'namefilter' => '',

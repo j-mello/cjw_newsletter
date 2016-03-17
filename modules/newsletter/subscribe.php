@@ -15,7 +15,7 @@ include_once( 'kernel/common/template.php' );
 
 $module = $Params['Module'];
 $http = eZHTTPTool::instance();
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 
 // ezuser, anonym or per hash
 

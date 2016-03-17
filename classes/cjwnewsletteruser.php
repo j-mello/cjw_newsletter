@@ -601,7 +601,7 @@ class CjwNewsletterUser extends eZPersistentObject
         $template = $mailTemplate;
         $newsletterUser = $this;
         include_once( 'kernel/common/template.php' );
-        $tpl = templateInit();
+        $tpl = eZTemplate::factory();
         $tpl->setVariable( 'newsletter_user', $newsletterUser );
         $tpl->setVariable( 'hostname', $hostName );
         $templateResult = $tpl->fetch( $template ) ;
@@ -1161,7 +1161,7 @@ class CjwNewsletterUser extends eZPersistentObject
         if( $useTplForNameGeneration === 'enabled' )
         {
             include_once( 'kernel/common/template.php' );
-            $tpl = templateInit();
+            $tpl = eZTemplate::factory();
             $tpl->setVariable( 'nl_user', $this );
             $templateFile = 'design:newsletter/user/name.tpl';
             $name = strip_tags( trim( $tpl->fetch( $templateFile ) ) );

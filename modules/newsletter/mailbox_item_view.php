@@ -49,7 +49,7 @@ else
         $parseHeaderArray = $cjwNewsletterMailParserObject->parse();
     }
 
-    $tpl = templateInit();
+    $tpl = eZTemplate::factory();
 
     $tpl->setVariable( 'mailbox_item', $mailboxItemObject );
     $tpl->setVariable( 'mailbox_item_raw_content', $mailboxItemObject->getRawMailMessageContent() );

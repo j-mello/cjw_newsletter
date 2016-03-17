@@ -20,7 +20,7 @@ require_once( 'kernel/common/i18n.php' );
 include_once( 'kernel/common/template.php' );
 
 $http = eZHTTPTool::instance();
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 
 $http = eZHTTPTool::instance();
 $db = eZDB::instance();

@@ -18,7 +18,7 @@ include_once( 'kernel/common/template.php' );
 $module = $Params['Module'];
 
 $http = eZHTTPTool::instance();
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 
 $newsletterUser = CjwNewsletterUser::fetchByHash( $Params['UserHash'] );
 

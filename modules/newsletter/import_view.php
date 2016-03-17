@@ -39,7 +39,7 @@ if( $http->hasPostVariable( 'RemoveSubsciptionsByAdminButton' ) )
     $removeResult = $importObject->removeActiveSubscriptionsByAdmin();
 }
 
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 
 $tpl->setVariable( 'import_object', $importObject );
 $tpl->setVariable( 'view_parameters', $viewParameters );

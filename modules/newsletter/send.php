@@ -36,7 +36,7 @@ else
     $nodeId = null;
 }
 
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 $tpl->setVariable( 'view_parameters', $viewParameters );
 $tpl->setVariable( 'node_id', $nodeId );
 

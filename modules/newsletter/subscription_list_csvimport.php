@@ -504,7 +504,7 @@ $viewParameters = array( 'offset' => 0,
 $userParameters = $Params['UserParameters'];
 $viewParameters = array_merge( $viewParameters, $userParameters );
 
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 $tpl->setVariable( 'view_parameters', $viewParameters );
 $tpl->setVariable( 'list_node', $listNode );
 $tpl->setVariable( 'import_id', $importId );
