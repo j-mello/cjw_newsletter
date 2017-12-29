@@ -84,6 +84,9 @@ class CjwNewsletterTransport
             case 'openpasmtp':
             {
                 $transport = new OpenPASMTPTransport();
+                $eZmail = new eZMail();
+                $eZmail->Mail = $ezcMailComposerObject;
+                $ezcMailComposerObject = $eZmail;
             } break;
         }
 
