@@ -80,6 +80,11 @@ class CjwNewsletterTransport
             {
                 $transport = new ezcMailMtaTransport();
             } break;
+
+            case 'openpasmtp':
+            {
+                $transport = new OpenPASMTPTransport();
+            } break;
         }
 
         try
