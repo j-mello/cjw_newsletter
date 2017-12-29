@@ -121,9 +121,9 @@ class CjwNewsletterTransport
         switch ( $name )
         {
             case 'transportMethod':
-                if ( !(  in_array($value, array( 'file', 'smtp', 'sendmail' ) ) ) )
+                if ( !(  in_array($value, array( 'file', 'smtp', 'sendmail', 'openpasmtp' ) ) ) )
                 {
-                    throw new ezcBaseValueException( 'transportMethod', $value, 'file, smtp, sendmail' );
+                    throw new ezcBaseValueException( 'transportMethod', $value, 'file, smtp, sendmail', 'openpasmtp' );
                 }
                 $this->properties[$name] = $value;
                 break;
