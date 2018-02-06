@@ -2037,7 +2037,7 @@ Per modificare le tue impostazioni, clicca sul seguente link:
     </message>
     <message>
         <source>change</source>
-        <translation>modificare</translation>
+        <translation>modifica</translation>
     </message>
     <message>
         <source>Input did not validate</source>
@@ -2069,7 +2069,7 @@ Per modificare le tue impostazioni, clicca sul seguente link:
     </message>
     <message>
         <source>You want to %unsubscribelink or %changesubscribelink your profile?</source>
-        <translation>Vuoi %unsubscribelink o %changesubscribelink il tuo profilo?</translation>
+        <translation>%unsubscribelink o %changesubscribelink il tuo profilo</translation>
     </message>
     <message>
         <source>* mandatory fields</source>
