@@ -30,9 +30,9 @@ class CjwNewsletterMailboxItem extends eZPersistentObject
      * @param unknown_type $row
      * @return void
      */
-    function CjwNewsletterMailboxItem( $row )
+    function __construct( $row )
     {
-        $this->eZPersistentObject( $row );
+        parent::__construct( $row );
     }
 
     /**

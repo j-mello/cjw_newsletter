@@ -23,9 +23,9 @@ class CjwNewsletterImport extends eZPersistentObject
      * @param array $row
      * @return void
      */
-    function CjwNewsletterImport( $row )
+    function __construct( $row )
     {
-        $this->eZPersistentObject( $row );
+        parent::__construct( $row );
     }
 
     /**

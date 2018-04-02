@@ -28,9 +28,9 @@ class CjwNewsletterEditionSendItem extends eZPersistentObject
      * @param unknown_type $row
      * @return void
      */
-    function CjwNewsletterEditionSendItem( $row )
+    function __construct( $row )
     {
-        $this->eZPersistentObject( $row );
+        parent::__construct( $row );
     }
 
     /**

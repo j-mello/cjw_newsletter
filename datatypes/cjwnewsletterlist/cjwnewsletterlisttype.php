@@ -30,9 +30,9 @@ class CjwNewsletterListType extends eZDataType
      *
      * @return void
      */
-    function CjwNewsletterListType()
+    function __construct()
     {
-        $this->eZDataType( self::DATA_TYPE_STRING, ezpI18n::tr( 'cjw_newsletter/datatypes', 'CJW Newsletter List', 'Datatype name' ),
+        parent::__construct( self::DATA_TYPE_STRING, ezpI18n::tr( 'cjw_newsletter/datatypes', 'CJW Newsletter List', 'Datatype name' ),
         array( 'serialize_supported' => true, 'translation_allowed' => false ) );
     }
 

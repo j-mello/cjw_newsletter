@@ -34,7 +34,7 @@ class CjwNewsletterListVirtualType extends eZDataType
      */
     function __construct()
     {
-        $this->eZDataType( self::DATA_TYPE_STRING, ezpI18n::tr( 'cjw_newsletter/datatypes', 'CJW Newsletter List Virtual', 'Datatype name' ),
+        parent::__construct( self::DATA_TYPE_STRING, ezpI18n::tr( 'cjw_newsletter/datatypes', 'CJW Newsletter List Virtual', 'Datatype name' ),
         array( 'serialize_supported' => true, 'translation_allowed' => false ) );
     }
 

@@ -23,7 +23,7 @@ class CjwNewsletterFunctionCollection
      *
      * @return void
      */
-    function CjwNewsletterFunctionCollection()
+    function __construct()
     {
 
     }

@@ -40,7 +40,7 @@ class CjwNewsletterFilterType
     protected $Attributes;
 
 
-    protected function CjwNewsletterFilterType( $filterTypeIdentifier, $name, $properties = array() )
+    protected function __construct( $filterTypeIdentifier, $name, $properties = array() )
     {
 
         $this->Identifier = $filterTypeIdentifier;

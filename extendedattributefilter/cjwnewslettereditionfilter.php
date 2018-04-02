@@ -37,7 +37,7 @@ class CjwNewsletterEditionFilter
      *
      * @return void
      */
-    function CjwNewsletterListFilter()
+    function __construct()
     {
         // Empty...
     }

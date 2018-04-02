@@ -23,9 +23,9 @@ class CjwNewsletterBlacklistItem extends eZPersistentObject
      * @param array $row
      * @return void
      */
-    function CjwNewsletterBlacklistItem( $row )
+    function __construct( $row )
     {
-        $this->eZPersistentObject( $row );
+        parent::__construct( $row );
     }
 
     /**
