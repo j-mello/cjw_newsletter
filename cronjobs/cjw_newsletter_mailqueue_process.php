@@ -153,52 +153,59 @@ foreach ( $sendObjectList as $sendObject )
                 // set x-cjwnl header
                 $cjwMail->resetExtraMailHeaders();
                 $cjwMail->setExtraMailHeadersByNewsletterSendItem( $sendItem );
-
-                $resultArray = $cjwMail->sendEmail( $emailSender,
-                                                    $emailSenderName,
-                                                    $emailReceiver,
-                                                    $emailReceiverName,
-                                                    $emailSubject,
-                                                    $outputStringArrayNew,
-                                                    false,
-                                                    'utf-8',
-                                                    $emailReplyTo,
-                                                    $emailReturnPath);
-
-                $sendResult = $resultArray['send_result'];
-
-                if ( $sendResult === true )
+                try
                 {
-                    // emal was send
-                    $progressMonitor->addEntry( "[SEND] $itemCounter/$itemsNotSend", "Newsletter send item {$id} processed. " );
+                    $resultArray = $cjwMail->sendEmail( $emailSender,
+                                                        $emailSenderName,
+                                                        $emailReceiver,
+                                                        $emailReceiverName,
+                                                        $emailSubject,
+                                                        $outputStringArrayNew,
+                                                        false,
+                                                        'utf-8',
+                                                        $emailReplyTo,
+                                                        $emailReturnPath);
 
-                    // wenn ok als versendet markieren
-                    $sendItem->setAttribute('status', CjwNewsletterEditionSendItem::STATUS_SEND );
-                    $sendItem->store();
+                    $sendResult = $resultArray['send_result'];
+
+                    if ( $sendResult === true )
+                    {
+                        // emal was send
+                        $progressMonitor->addEntry( "[SEND] $itemCounter/$itemsNotSend", "Newsletter send item {$id} processed. " );
+
+                        // wenn ok als versendet markieren
+                        $sendItem->setAttribute('status', CjwNewsletterEditionSendItem::STATUS_SEND );
+                        $sendItem->store();
+                    }
+                    else
+                    {
+                        // error execption
+                        $exception = $resultArray['send_result'];
+                        $progressMonitor->addEntry( "[FAILED] $itemCounter/$itemsNotSend", "Newsletter send item {$id} failed, abort and bounce newsletter user." );
+                        // abort item if mail returns directly e.g. mailbox not found
+                        $sendItem->setAttribute( 'status', CjwNewsletterEditionSendItem::STATUS_ABORT );
+                        $sendItem->store();
+
+                        // bounce send Item
+                        $sendItem->setBounced();
+
+                        // bounc nl user
+                        $newsletterUser = $sendItem->attribute( 'newsletter_user_object' );
+                        if ( is_object( $newsletterUser ) )
+                        {
+                            $isHardBounce = false;
+                            // bounce nl user
+                            $newsletterUser->setBounced( $isHardBounce );
+                        }
+
+                    }
                 }
-                else
+                catch(Exception $e)
                 {
-                    // error execption
-                    $exception = $resultArray['send_result'];
-                    $progressMonitor->addEntry( "[FAILED] $itemCounter/$itemsNotSend", "Newsletter send item {$id} failed, abort and bounce newsletter user." );
-                    // abort item if mail returns directly e.g. mailbox not found
+                    $progressMonitor->addEntry( "[ERROR] $itemCounter/$itemsNotSend", $e->getMessage() );
                     $sendItem->setAttribute( 'status', CjwNewsletterEditionSendItem::STATUS_ABORT );
                     $sendItem->store();
-
-                    // bounce send Item
-                    $sendItem->setBounced();
-
-                    // bounc nl user
-                    $newsletterUser = $sendItem->attribute( 'newsletter_user_object' );
-                    if ( is_object( $newsletterUser ) )
-                    {
-                        $isHardBounce = false;
-                        // bounce nl user
-                        $newsletterUser->setBounced( $isHardBounce );
-                    }
-
                 }
-
             }
             else
             {
