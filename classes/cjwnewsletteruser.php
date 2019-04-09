@@ -1794,6 +1794,79 @@ class CjwNewsletterUser extends eZPersistentObject
 */
     }
 
+    /**
+    * Fetch all Newsletter user with extended field
+    * whith option to Filter data
+    *
+
+    *
+    * @param array $filterArray condtions which will be combined with 'AND'
+    * @param integer $limit
+    * @param integer $offset
+    * @param boolean $asObject
+    * @return array with CjwNewsletterUser objects
+    */
+    static function fetchUserCountByFilter ( $filterArray )
+    {
+
+        $db = eZDB::instance();
+
+        $field_filters = null;
+        $conditions = null;
+        $sorts = null;
+        $grouping = false;
+        $custom_fields = null;
+        $custom_tables = null;
+        $custom_conds = null;
+
+        $def = self::definition();
+
+        $fields = $def["fields"];
+        $tables = $def["name"];
+        $class_name = $def["class_name"];
+
+        $sqlFieldArray = array( 'COUNT( DISTINCT( cjwnl_user.email ) )' );
+        $sqlTableArray = array( 'cjwnl_user' );
+        $sqlCondArray = array();
+
+
+        $sqlCondArray[] = 'cjwnl_user.id = cjwnl_subscription.newsletter_user_id';
+        $sqlTableArray[] = 'cjwnl_subscription';
+
+        $sqlFieldString = '';
+        if ( count( $sqlFieldArray ) > 0 )
+        {
+            $sqlFieldString = implode( ', ', $sqlFieldArray );
+        }
+
+        $sqlTableString= '';
+        if ( count( $sqlTableArray ) > 0 )
+        {
+            $sqlTableString = implode( ', ', $sqlTableArray );
+        }
+
+        foreach( $filterArray as $filter )
+        {
+            $sqlCondArray[] = self::filterText( $filter );
+        }
+
+        $sqlCondAndString = '';
+        if ( count( $sqlCondArray ) > 0 )
+        {
+            $sqlCondAndString = 'WHERE ' . implode( "\n AND ", $sqlCondArray ) .' ';
+        }
+
+
+        $sql = "SELECT $sqlFieldString
+                FROM $sqlTableString
+                $sqlCondAndString";
+
+        $rows = $db->arrayQuery( $sql );
+
+        return $rows[0]['count'];
+
+    }
+
 
     /**
      * TODO move to utility class
@@ -1908,4 +1981,3 @@ class CjwNewsletterUser extends eZPersistentObject
 
 }
 
-?>

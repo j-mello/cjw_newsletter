@@ -22,7 +22,21 @@ $db   = eZDB::instance();
 
 $searchUserEmail = false;
 $offset          = 0;
-$limit           = 10;
+
+if( eZPreferences::value( 'admin_user_list_limit' ) )
+{
+    switch( eZPreferences::value( 'admin_user_list_limit' ) )
+    {
+        case '2': { $limit = 25; } break;
+        case '3': { $limit = 50; } break;
+        default:  { $limit = 10; } break;
+    }
+}
+else
+{
+    $limit = 10;
+}
+
 
 $filterArray = array();
 //
@@ -40,7 +54,8 @@ $filterArray = array();
 if( $http->hasVariable( 'SearchUserEmail' ) )
 {
     $searchUserEmail = trim( $db->escapeString( $http->variable( 'SearchUserEmail' ) ) );
-    $filterArray[]   = array( 'cjwnl_user.email' =>  array( 'like', $searchUserEmail ) );
+    if (!empty($searchUserEmail))
+    	$filterArray[]   = array( 'cjwnl_user.email' =>  array( 'like', $searchUserEmail ) );
 }
 
 // AND - all filter should match
@@ -52,7 +67,7 @@ $userListSearch = CjwNewsletterUser::fetchUserListByFilter( $filterArray,
                                                             $offset );
 
 $tpl->setVariable( 'user_list', $userListSearch );
-$tpl->setVariable( 'user_list_count', count( $userListSearch ) );
+$tpl->setVariable( 'user_list_count', CjwNewsletterUser::fetchUserCountByFilter($filterArray) );
 
 $viewParameters = array( 'offset'     => 0,
                          'namefilter' => '' );
