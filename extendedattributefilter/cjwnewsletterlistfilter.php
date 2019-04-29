@@ -78,7 +78,7 @@ class CjwNewsletterListFilter
 
         if ( count( $siteAccessArray ) > 0 )
         {
-            $siteaccessSqlStringArray = '';
+            $siteaccessSqlStringArray = [];
             foreach ( $siteAccessArray as $siteAccessName )
             {
                 $siteaccessSqlStringArray[] = "c.siteaccess_array_string like '%;". $db->escapeString( $siteAccessName ) .";%'";

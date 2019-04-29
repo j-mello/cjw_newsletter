@@ -26,7 +26,7 @@ class CjwNewsletterList extends eZPersistentObject
      * @param array $row
      * @return void
      */
-    function __construct( $row )
+    function __construct( $row = null )
     {
         parent::__construct( $row );
         $this->setAttribute( 'is_virtual', 0 );
