@@ -1986,7 +1986,7 @@ Per modificare le tue impostazioni, clicca sul seguente link:
     </message>
     <message>
         <source>To unsubscribe from this newsletter please visit the following link</source>
-        <translation>Per disiscriverti da questa newsleetter visita il seguente link</translation>
+        <translation>Per disiscriverti da questa newsletter visita il seguente link</translation>
     </message>
 </context>
 <context>
