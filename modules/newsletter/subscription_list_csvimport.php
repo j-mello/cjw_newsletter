@@ -59,7 +59,8 @@ if ( $cjwNewsletterIni->hasVariable( 'NewsletterCsvImportSettings', 'DefaultFirs
 $csvFieldMappingArray = array( 'email'      => '',
                                'first_name' => '',
                                'last_name'  => '',
-                               'salutation' => '' );
+                               'salutation' => '',
+                               's_status'   => '' );
 
 if ( $cjwNewsletterIni->hasVariable( 'NewsletterCsvImportSettings', 'CsvFieldMappingArray' ) )
 {
@@ -118,7 +119,6 @@ if ( $http->hasPostVariable( 'Note' ) )
 {
     $note = $http->variable( 'Note' );
 }
-
 if ( $http->hasPostVariable( 'CancelButton' ) )
 {
     $csvFilePath = '';
@@ -266,6 +266,10 @@ else
             $customDataText4 = '';
             if( isset( $item[ 'custom_data_text_4' ] ) )
                 $customDataText4 = $item[ 'custom_data_text_4' ];
+            
+            $s_status = '';
+            if ( isset( $item[ 's_status' ] ) )
+                $s_status = $item[ 's_status' ];
 
             $eZUserId = false;
             $newsletterUserId = 0;
@@ -376,8 +380,15 @@ else
                             $userObject->setAttribute( 'custom_data_text_3', $customDataText3 );
                         if ( $customDataText4 != '' )
                             $userObject->setAttribute( 'custom_data_text_4', $customDataText4 );
+                        if ( $s_status == '4' )
+                            {
+                                $userObject->setAttribute( 's_status', CjwNewsletterUser::STATUS_REMOVED_ADMIN);
+                            } else 
+                            {
+                                $userObject->setAttribute( 's_status', CjwNewsletterUser::STATUS_CONFIRMED);
+                            }
 
-                        $userObject->setAttribute( 'status', CjwNewsletterUser::STATUS_CONFIRMED );
+                        //$userObject->setAttribute( 'status', CjwNewsletterUser::STATUS_CONFIRMED );
                         $userObject->setAttribute( 'import_id', $importId );
                         
                         // set new remote_id
@@ -477,7 +488,7 @@ else
                                                       'user_status_old'      => $existingUserStatus,
                                                       'user_status_new'      => $newUserStatus,
                                                       'subscription_status_old' => $existingSubscriptionStatus,
-                                                      'subscription_status_new'  => $newSubscriptionStatus
+                                                      'subscription_status_new'  => $newSubscriptionStatus,
                                                       //'user_object' => $userObject
             );
 
@@ -503,7 +514,15 @@ $viewParameters = array( 'offset' => 0,
 
 $userParameters = $Params['UserParameters'];
 $viewParameters = array_merge( $viewParameters, $userParameters );
-
+//echo '<pre>';
+//var_dump($s_status);
+//var_dump($csvDataArray);
+//var_dump($csvParserObject);
+//var_dump($userObject);
+//var_dump($cjwNewsletterIni);
+//echo '<br>';
+//var_dump($csvFieldMappingArray);
+//echo '</pre>';
 $tpl = eZTemplate::factory();
 $tpl->setVariable( 'view_parameters', $viewParameters );
 $tpl->setVariable( 'list_node', $listNode );

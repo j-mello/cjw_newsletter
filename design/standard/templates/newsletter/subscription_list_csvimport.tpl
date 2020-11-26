@@ -286,6 +286,9 @@ list all blacklist items
                                             {'Email ok'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
                                         </th>
                                         <th class="tight">
+                                            {'Statut '|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
+                                        </th>
+                                        <th class="tight">
                                             {'Nl user created'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
                                         </th>
                                         <th class="tight">
@@ -305,6 +308,7 @@ list all blacklist items
                                              $user_status_new         = '-'
                                              $subscription_status_old = '-'
                                              $subscription_status_new = '-'
+                                             $status                  = '_'
                                              $newsletter_user_id      = 0}
 
                                         {if is_set($list_subscription_array[$row])}
@@ -316,6 +320,7 @@ list all blacklist items
                                                  $subscription_status_old = $list_subscription_array[$row].subscription_status_old
                                                  $subscription_status_new = $list_subscription_array[$row].subscription_status_new
                                                  $newsletter_user_id      = $list_subscription_array[$row].newsletter_user_id
+                                                 $status                  = $list_subscription_array[$row].subscription_status_new
                                                 }
 
                                             {if is_set( $list_subscription_array[$row]['subscription_object'] )}
@@ -374,9 +379,9 @@ list all blacklist items
                                                     <b>{'updated'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
                                                 {elseif $user_created|eq( '0' )}
                                                     <b>{'no'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
-                                                    {if $subscription_status_old|eq( 3 )}
+                                                    {if $subscription_status_old|eq( '3' )}
                                                         {'Removed by user'|i18n( 'cjw_newsletter/subscription/status' )}
-                                                    {elseif $subscription_status_old|eq( 8 )}
+                                                    {elseif $subscription_status_old|eq( '8' )}
                                                         {'Blacklisted'|i18n( 'cjw_newsletter/subscription/status' )}
                                                     {/if}
                                                 {else}
@@ -390,9 +395,9 @@ list all blacklist items
                                                     <b>{'updated'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
                                                 {elseif $subscription_created|eq( '0' )}
                                                     <b>{'no'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
-                                                    {if $subscription_status_old|eq( 3 )}
+                                                    {if $subscription_status_old|eq( '3' )}
                                                         {'Removed by user'|i18n( 'cjw_newsletter/subscription/status' )}
-                                                    {elseif $subscription_status_old|eq( 8 )}
+                                                    {elseif $subscription_status_old|eq( '8' )}
                                                         {'Blacklisted'|i18n( 'cjw_newsletter/subscription/status' )}
                                                     {/if}
                                                 {else}
@@ -402,7 +407,8 @@ list all blacklist items
                                             <td>
                                                 {if is_object($subscription_object)}{$subscription_object.modified|datetime( 'custom', "%Y%m%d-%H:%i:%s" )}{/if}
                                             </td>
-                                        </tr>
+                                        </tr>    
+                                        {$list_subscription_array[$row]|attribute(['show' [, 2 [, table ]]])}
                                         {undef $email_ok
                                                $user_created
                                                $subscription_created

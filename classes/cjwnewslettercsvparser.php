@@ -41,7 +41,7 @@ class CjwNewsletterCsvParser
         $rowArray = array();
         $c = 0;
         $row = array();
-        // $firstRow = array( 'email', 'first_name', 'last_name', 'salutation' );
+        // $firstRow = array( 'email', 'first_name', 'last_name', 'salutation', 's_status' );
         $firstRow = array();
 
         foreach ( $csvFieldMappingArray as $key => $item )
