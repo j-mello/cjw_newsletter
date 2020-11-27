@@ -69,11 +69,11 @@ class CjwNewsletterCsvParser
                 {
                     if ( $utf8Encode !== FALSE )
                     {
-                        $rowArray[ $c ] [ $firstRow[$key] ] = utf8_encode( $row[ $key ] );
+                        $rowArray[ $c ] [ $item ] = utf8_encode( $row[ $key ] );
                     }
                     else
                     {
-                        $rowArray[ $c ] [ $firstRow[$key] ] = $row[ $key ];
+                        $rowArray[ $c ] [ $item ] = $row[ $key ];
                     }
                 }
             }
