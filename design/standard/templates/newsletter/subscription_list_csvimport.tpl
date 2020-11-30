@@ -373,17 +373,35 @@ list all blacklist items
                                                 {/if}
                                             </td>
                                             <td title="status old: {$user_status_old|wash()} -new: {$user_status_new|wash()}">
+                                                {if $data_set.s_status|eq( '1' )}
+                                                    <b>{'Created'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
+                                                {elseif $data_set.s_status|eq( '2' )}
+                                                    <b>{'Updated'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
+                                                {elseif $data_set.s_status|eq( '0' )}
+                                                    <b>{'No change'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
+                                                {elseif $data_set.s_status|eq( '3' )}
+                                                    <b>{'Removed by user'|i18n( 'cjw_newsletter/subscription/status' )}</b>
+                                                {elseif $data_set.s_status|eq( '4' )}
+                                                    <b>{'Removed by admin'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
+                                                {elseif $data_set.s_status|eq( '8' )}
+                                                    <b>{'Blacklisted'|i18n( 'cjw_newsletter/subscription/status' )}</b>
+                                                {else}
+                                                    {$user_created|wash()}
+                                                {/if}
+                                            </td>
+                                            <td title="status old: {$user_status_old|wash()} -new: {$user_status_new|wash()}">
                                                 {if $user_created|eq( '1' )}
-                                                    <b>{'created'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
+                                                    <b>{'Created'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
                                                 {elseif $user_created|eq( '2' )}
-                                                    <b>{'updated'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
+                                                    <b>{'Updated'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
                                                 {elseif $user_created|eq( '0' )}
-                                                    <b>{'no'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
-                                                    {if $subscription_status_old|eq( '3' )}
-                                                        {'Removed by user'|i18n( 'cjw_newsletter/subscription/status' )}
-                                                    {elseif $subscription_status_old|eq( '8' )}
-                                                        {'Blacklisted'|i18n( 'cjw_newsletter/subscription/status' )}
-                                                    {/if}
+                                                    <b>{'No change'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
+                                                {elseif $subscription_status_old|eq( '3' )}
+                                                    <b>{'Removed by user'|i18n( 'cjw_newsletter/subscription/status' )}</b>
+                                                {elseif $user_created|eq( '4' )}
+                                                    <b>{'Removed by admin'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
+                                                {elseif $subscription_status_old|eq( '8' )}
+                                                    <b>{'Blacklisted'|i18n( 'cjw_newsletter/subscription/status' )}</b>
                                                 {else}
                                                     {$user_created|wash()}
                                                 {/if}
