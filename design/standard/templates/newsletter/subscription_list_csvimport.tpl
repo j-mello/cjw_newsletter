@@ -377,9 +377,9 @@ list all blacklist items
                                                     <b>{'Updated'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
                                                 {elseif $data_set.s_status|eq( '0' )}
                                                     <b>{'No change'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
-                                                {elsif $data_set.s_status|eq( 3 )}
+                                                {elseif $data_set.s_status|eq( 3 )}
                                                    <b>{'Removed by user'|i18n( 'cjw_newsletter/subscription/status' )}</b>
-                                                {elsif $data_set.s_status|eq( 4 )}
+                                                {elseif $data_set.s_status|eq( 4 )}
                                                    <b>{'Removed by admin'|i18n( 'cjw_newsletter/subscription/status' )}</b>
                                                 {elseif $data_set.s_status|eq( 8 )}
                                                    <b>{'Blacklisted'|i18n( 'cjw_newsletter/subscription/status' )</b>
