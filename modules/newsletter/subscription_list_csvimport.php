@@ -59,7 +59,8 @@ if ( $cjwNewsletterIni->hasVariable( 'NewsletterCsvImportSettings', 'DefaultFirs
 $csvFieldMappingArray = array( 'email'      => '',
                                'first_name' => '',
                                'last_name'  => '',
-                               'salutation' => '' );
+                               'salutation' => '',
+                               's_status'   => '');
 
 if ( $cjwNewsletterIni->hasVariable( 'NewsletterCsvImportSettings', 'CsvFieldMappingArray' ) )
 {
@@ -266,6 +267,10 @@ else
             $customDataText4 = '';
             if( isset( $item[ 'custom_data_text_4' ] ) )
                 $customDataText4 = $item[ 'custom_data_text_4' ];
+            
+            $s_status = '';
+            if ( isset( $item[ 's_status' ] ) )
+                $s_status = $item[ 's_status' ];
 
             $eZUserId = false;
             $newsletterUserId = 0;
@@ -376,8 +381,14 @@ else
                             $userObject->setAttribute( 'custom_data_text_3', $customDataText3 );
                         if ( $customDataText4 != '' )
                             $userObject->setAttribute( 'custom_data_text_4', $customDataText4 );
+                        if ( $s_status == '4' )
+                        {
+                            $userObject->setAttribute( 's_status', CjwNewsletterUser::STATUS_REMOVED_ADMIN);
+                        } else 
+                        {
+                            $userObject->setAttribute( 's_status', CjwNewsletterUser::STATUS_CONFIRMED);
+                        }
 
-                        $userObject->setAttribute( 'status', CjwNewsletterUser::STATUS_CONFIRMED );
                         $userObject->setAttribute( 'import_id', $importId );
                         
                         // set new remote_id
